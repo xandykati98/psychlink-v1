@@ -21,7 +21,7 @@ function MyApp({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <Overseer supabaseClient={supabaseClient}>
+      <Overseer>
         <Component {...pageProps} />
       </Overseer>
     </SessionContextProvider>

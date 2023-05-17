@@ -39,7 +39,17 @@ import {
   SelectValue,
 } from "components/ui/select"
 
-const groups = [
+interface Team {
+  label: string;
+  value: string;
+}
+
+interface Group {
+  label: string;
+  teams: Team[];
+}
+
+const groups:Group[] = [
   {
     label: "Personal Account",
     teams: [
@@ -64,17 +74,15 @@ const groups = [
   },
 ]
 
-type Team = (typeof groups)[number]["teams"][number]
-
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
-interface TeamSwitcherProps extends PopoverTriggerProps {}
+type TeamSwitcherProps = PopoverTriggerProps
 
 export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [open, setOpen] = React.useState(false)
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
-    (groups[0] as any).teams[0] as Team
+    groups[0]?.teams[0] as Team
   )
 
   return (

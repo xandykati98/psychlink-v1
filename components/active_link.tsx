@@ -7,9 +7,12 @@ function ActiveLink({ children, href, activeStyle, className }: { className?: st
         ...(router.asPath === href ? activeStyle : {})
     }
 
-    const handleClick = (e:any) => {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault()
-        router.push(href)
+        void router.push(href).catch((error) => {
+          // Handle any errors that occur during navigation
+          console.error('Navigation error:', error)
+        })
     }
 
     return (

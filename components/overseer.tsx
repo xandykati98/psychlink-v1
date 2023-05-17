@@ -4,7 +4,9 @@ import AuthContext from './auth_context'
 import Login from '~/pages/login'
 import ThemeContext, { initialTheme } from './theme_context'
 
-const Overseer = (props:any) => {
+const Overseer = (props: {
+    children: React.ReactNode
+}) => {
     const user = useUser() as User
     const { data, isLoading } = api.user.getUserData.useQuery({ id: user?.id || '' })
     if (!user) {
